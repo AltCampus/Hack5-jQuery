@@ -1,69 +1,68 @@
 const wrap = (els) => ({
- 
-    append: (newHtml) => {
-      els.forEach(el => {
-        if(newHtml) {
-          el.innerHTML = newHtml;
-          return wrap(el);
-        } else {
-          return el.innerHTML;
-        }
-      });
-    },
-  
-    addClass: (className) => {
-      els.forEach(el => {
-        el.classList.add(className)
-      })
-    },
+  append: (newHtml) => {
+    els.forEach(el => {
+      let newEle = document.createElement(newHtml);
+      el.appendChild(newEle);
+    });
+  },
 
-    removeClass: (className) => {
-        els.forEach(el => {
-          el.classList.remove(className)
-        })
-      },
+  addClass: (className) => {
+    els.forEach(el => {
+      el.classList.add(className)
+    })
+  },
 
-    // hasClass: (className) => {
-    //     els.forEach(el => {
-    //       if(el.classList.contains(className)) return true;
-    //       else return false; 
-    //     })
-    //  },
-      attr: (key, value) => {
-        els.forEach(el => {
-          el.setAttribute(key, value);
-        })
-      },
+  removeClass: (className) => {
+    els.forEach(el => {
+      el.classList.remove(className)
+    })
+  },
 
-      removeAttr: (key, value) => {
-        els.forEach(el => {
-          el.removeAttribute(key, value);
-        })
-      },
+  hasClass: (className) => {
+    els.forEach(el => {
+      if (el.classList.contains(className)) {
+        console.log(true);
+      }
+      else {
+        console.log(false);
+      }; 
+    })
+  },
 
-      css: (attribute, value) => {
-        els.forEach(element => {
-          element.style[attribute] = value;
-        })
-      },
+  attr: (key, value) => {
+    els.forEach(el => {
+      el.setAttribute(key, value);
+    })
+  },
 
-      first: (attribute, value) => {
-        els[0].style[attribute] = value;
-      },
+  removeAttr: (key, value) => {
+    els.forEach(el => {
+      el.removeAttribute(key, value);
+    })
+  },
 
-      prop: (attribute) => {
-        return(els[0].getAttribute(attribute));
-      },
+  css: (attribute, value) => {
+    els.forEach(element => {
+      element.style[attribute] = value;
+    })
+  },
 
+  first: (attribute, value) => {
+    els[0].style[attribute] = value;
+  },
 
-    //   css = function(attribute, value) {
-    //     var el = document.querySelectorAll(this.context);
-    //     el.forEach(element => {
-    //       element.style[attribute] = value;
-    //     })
-    //   },
+  prop: (attribute) => {
+    return (els[0].getAttribute(attribute));
+  },
+  html: (innerText) => {
+    els.forEach(el => {
+      if (!innerText) {
+        console.log(el.innerHTML);
+      } else {
+        el.innerHTML = innerText;
+      }
+    })
+  }
+})
 
-
-  })
-  
-  const $u = (els) => wrap(document.querySelectorAll(els))
+const $ = (els) => wrap(document.querySelectorAll(els))
