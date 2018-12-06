@@ -47,6 +47,15 @@ const wrap = (els) => ({
         })
       },
 
+      first: (attribute, value) => {
+        els[0].style[attribute] = value;
+      },
+
+      prop: (attribute) => {
+        return(els[0].getAttribute(attribute));
+      },
+
+
     //   css = function(attribute, value) {
     //     var el = document.querySelectorAll(this.context);
     //     el.forEach(element => {
