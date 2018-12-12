@@ -68,6 +68,22 @@ class Wrap{
     })
     return this;
   }
+
+//  Bind an event handler to the "click" JavaScript event, or trigger that event on an element.
+  click(callback) {
+    this.els.forEach(el => {
+      el.addEventListener('click',callback);
+    });
+  }
+
+//Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.
+dblclick(callback) {
+  this.els.forEach(el => {
+    el.addEventListener('dblclick',callback);
+  });
+}
+
+
 }
 
 let $ = (v) => new Wrap(document.querySelectorAll(v))
