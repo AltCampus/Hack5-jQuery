@@ -15,6 +15,7 @@ class Wrap {
   }
 
 // Adds the specified class(es) to each element in the set of matched elements.  
+
   addClass(className) {
     this.els.forEach(el => {
       el.classList.add(className)
@@ -22,7 +23,9 @@ class Wrap {
     return this;
   }
 
+
 // Removes the specified class(es) to each element in the set of matched elements.  
+
   removeClass(className) {
     this.els.forEach(el => {
       el.classList.remove(className)
@@ -91,7 +94,26 @@ class Wrap {
     return this;
   }
 
-// Bind an event handler to the "click" JavaScript event, or trigger that event on an element.
+
+// before() method inserts a node before the reference node as a child of a specified parent node.
+  before(node) {
+    this.els.forEach(el => {
+      let html = document.createElement(node);
+      el.parentNode.insertBefore(html, el);
+    })
+    return this;
+  }
+
+// after() method inserts a node after the reference node as a child of a specified parent node.
+  after(node) {
+    this.els.forEach(el => {
+      let html = document.createElement(node);
+      el.parentNode.insertBefore(html, el.nextSibling);
+    })
+    return this;
+  }
+
+//  Bind an event handler to the "click" JavaScript event, or trigger that event on an element.
   click(callback) {
     this.els.forEach(el => {
       el.addEventListener('click',callback);
@@ -154,6 +176,13 @@ class Wrap {
     });
     return this;
   }
+
+// Bind an event handler to the "dblclick" JavaScript event, or trigger that event on an element.
+  dblclick(callback) {
+  this.els.forEach(el => {
+    el.addEventListener('dblclick',callback);
+  });
+}
 
 // Bind an event handler to the "mouseover" JavaScript event, or trigger that event on an element.
   mouseover(callback) {
