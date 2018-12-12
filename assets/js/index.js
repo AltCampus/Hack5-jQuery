@@ -1,6 +1,7 @@
-class Wrap{
+class Wrap {
   constructor(els) {
     this.els = els;
+    this.store;
   }
   append(newHTML) {
     this.els.forEach(el => {
@@ -25,10 +26,9 @@ class Wrap{
     this.els.forEach(el => {
       if (el.classList.contains(className)) {
         console.log(true);
-      }
-      else {
+      } else {
         console.log(false);
-      }; 
+      };
     })
     return this;
   }
@@ -67,6 +67,45 @@ class Wrap{
       }
     })
     return this;
+  }
+
+  // Load data from the server
+
+  async load(url) {
+    let fetchData = await fetch(url).then(d => d.json()).then(v => this.store = v);
+    console.log(this.store);
+  }
+
+  // Load data from the server using a HTTP POST request.
+
+  post(url, data) {
+    let requestData = fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(res => res.json()).then(response => console.log('Success:', JSON.stringify(response)))
+      .catch(error => console.error('Error:', error));
+  }
+
+  // Load JSON-encoded data from the server using a GET HTTP request.
+
+  getJSON(url, data) {
+    let getData = fetch(url, {
+      method: 'GET',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json()).then(response => {
+      if (response) {
+        let res = JSON.stringify(response);
+        console.log(res);
+      } else {
+        throw new Error('Network response was not ok!!');
+      }
+    })
   }
 }
 
