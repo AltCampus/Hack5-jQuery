@@ -2,6 +2,7 @@ class Wrap{
   constructor(els) {
     this.els = els;
   }
+
   append(newHTML) {
     this.els.forEach(el => {
       let newEle = document.createElement(newHTML);
@@ -9,18 +10,21 @@ class Wrap{
     });
     return this;
   }
+
   addClass(className) {
     this.els.forEach(el => {
       el.classList.add(className)
     })
     return this;
   }
+
   removeClass(className) {
     this.els.forEach(el => {
       el.classList.remove(className)
     })
     return this;
   }
+
   hasClass(className) {
     this.els.forEach(el => {
       if (el.classList.contains(className)) {
@@ -32,32 +36,38 @@ class Wrap{
     })
     return this;
   }
+
   attr(key, value) {
     this.els.forEach(el => {
       el.setAttribute(key, value);
     })
     return this;
   }
+
   removeAttr(key, value) {
     this.els.forEach(el => {
       el.removeAttribute(key, value);
     })
     return this;
   }
+
   css(attribute, value) {
     this.els.forEach(element => {
       element.style[attribute] = value;
     })
     return this;
   }
+
   first(attribute, value) {
     this.els[0].style[attribute] = value;
     return this;
   }
+
   prop(attribute) {
     (this.els[0].getAttribute(attribute));
     return this;
   }
+
   html(innerText) {
     this.els.forEach(el => {
       if (!innerText) {
@@ -68,6 +78,25 @@ class Wrap{
     })
     return this;
   }
+
+  // before() method inserts a node before the reference node as a child of a specified parent node.
+  before(node) {
+    this.els.forEach(el => {
+      let html = document.createElement(node);
+      el.parentNode.insertBefore(html, el);
+    })
+    return this;
+  }
+
+  // after() method inserts a node after the reference node as a child of a specified parent node.
+  after(node) {
+    this.els.forEach(el => {
+      let html = document.createElement(node);
+      el.parentNode.insertBefore(html, el.nextSibling);
+    })
+    return this;
+  }
+
 }
 
 let $ = (v) => new Wrap(document.querySelectorAll(v))
