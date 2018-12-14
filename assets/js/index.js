@@ -182,8 +182,9 @@ class Wrap {
 
   // Get the current value of the first element in the set of matched elements.
     val(newVal){
-      this.els.value = newVal;
-      // (newVal !== undefined ? this.els.value = newVal : this.els.value);
+      this.els.forEach(el => {
+        el.value = newVal;
+      });
       return this;
     }
 
