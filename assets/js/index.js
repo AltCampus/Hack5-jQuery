@@ -97,10 +97,13 @@ class Wrap {
   //Get the descendants of each element in the current set of matched elements.
 
     find(tag){
-      this.els.forEach(el => {
-        tag = el;
-        console.log(el) 
+      this.els.forEach((el, i) => {
+        for (const x of el.children) {
+          if (x == el.children[i]) {console.log(x)}
+          else if(x != el.children[i]) {console.log(false)};
+        }
       });
+      return this;
     }
 
   // Load data from the server
@@ -168,20 +171,18 @@ class Wrap {
 
   // Get the current value of the first element in the set of matched elements.
     val(newVal){
-      this.els.value = newVal;
-      // (newVal !== undefined ? this.els.value = newVal : this.els.value);
+      this.els.forEach(v => {
+        v.value = newVal
+      })
       return this;
     }
 
     // One or more class names (separated by spaces) to be toggled for each element in the matched set.
     toggleclass(className, status){
       this.els.forEach(el => {
-          if (el.classList)
-          el.classList.add(className);
-        else
-          el.className += ' ' + className;
-
-        })
+        if (el.classList) {el.classList.add(className);}   
+        else {el.className += ' ' + className;}
+      })
       return this;
     }
 
