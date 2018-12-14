@@ -97,11 +97,17 @@ class Wrap {
   //Get the descendants of each element in the current set of matched elements.
 
     find(tag){
-      this.els.forEach(el => {
-        tag = el;
-        console.log(el) 
-      });
-    }
+      this.els.forEach((el, i) => {
+        for(let x of el.children){
+          if(x == el.children[i]){
+            console.log(x)
+        }else if(x != el.children[i]){
+          console.log(false)
+        }        
+      }           
+    });
+        return this;
+  }
 
   // Load data from the server
     async load(url) {
@@ -155,6 +161,14 @@ class Wrap {
         className = el
         console.log(el) 
       })
+      return this;
+    }
+
+    contents(){
+      this.els.forEach(el => {
+        console.log(el) 
+      })
+      return this;
     }
 
   // after() method inserts a node after the reference node as a child of a specified parent node.
